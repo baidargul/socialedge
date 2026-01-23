@@ -79,41 +79,67 @@ const PricingPage = () => {
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`bg-white/90 p-8 rounded-3xl shadow-sm border border-white/70 ${
-                plan.popular ? "ring-2 ring-site-btnPrimary" : ""
+              className={`group relative overflow-hidden rounded-3xl border shadow-soft transition-all ${
+                plan.popular
+                  ? "border-site-btnPrimary/70 bg-gradient-to-b from-white via-white to-[#f4ffe3] -translate-y-2"
+                  : "border-white/70 bg-white/90 hover:-translate-y-1 hover:shadow-md"
               }`}
             >
-              {plan.popular && (
-                <div className="bg-site-btnPrimary text-site-primary px-3 py-1 rounded-full text-xs font-semibold inline-block mb-4">
-                  Most popular
+              <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-site-btnPrimary/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_60%)] opacity-70"></div>
+              <div className="relative p-8 flex h-full flex-col">
+                {plan.popular && (
+                  <div className="inline-flex items-center gap-2 rounded-full bg-site-btnPrimary px-3 py-1 text-xs font-semibold text-site-primary mb-4">
+                    Most popular
+                  </div>
+                )}
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-site-primary">
+                      {plan.name}
+                    </h3>
+                    <p className="text-sm text-slate-500">{plan.description}</p>
+                  </div>
+                  <div className="rounded-2xl bg-site-primary/5 px-4 py-2 text-right">
+                    <div className="text-3xl font-bold text-site-primary">
+                      {plan.price}
+                    </div>
+                    <div className="text-xs text-slate-500">{plan.period}</div>
+                  </div>
                 </div>
-              )}
-              <h3 className="text-2xl font-semibold mb-2 text-site-primary">
-                {plan.name}
-              </h3>
-              <div className="text-4xl font-bold text-site-primary">
-                {plan.price}
+
+                <div className="mt-6 rounded-2xl border border-site-primary/10 bg-white/80 p-4">
+                  <div className="text-xs uppercase tracking-[0.2em] text-site-primary/60">
+                    Includes
+                  </div>
+                  <ul className="mt-3 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-center text-sm">
+                        <span className="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-site-btnPrimary/40 text-site-primary">
+                          <Check size={14} />
+                        </span>
+                        <span className="text-slate-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-auto pt-6">
+                  <Link
+                    href="/enterprise"
+                    className={`block w-full py-3 rounded-full text-center font-semibold transition-colors ${
+                      plan.popular
+                        ? "bg-site-primary text-white hover:bg-site-primary/90"
+                        : "bg-site-primary text-white hover:bg-site-primary/90"
+                    }`}
+                  >
+                    Start with {plan.name}
+                  </Link>
+                  <p className="mt-3 text-xs text-slate-500 text-center">
+                    Cancel anytime • No hidden fees
+                  </p>
+                </div>
               </div>
-              <div className="text-slate-600 mb-5">{plan.period}</div>
-              <p className="text-slate-600 mb-6">{plan.description}</p>
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center text-sm">
-                    <Check size={16} className="text-emerald-600 mr-3" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/enterprise"
-                className={`block w-full py-3 rounded-full text-center font-semibold transition-colors ${
-                  plan.popular
-                    ? "bg-site-btnPrimary text-site-primary hover:bg-[#c9f76f]"
-                    : "bg-site-primary text-white hover:bg-site-primary/90"
-                }`}
-              >
-                Start with {plan.name}
-              </Link>
             </div>
           ))}
         </div>
