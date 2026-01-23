@@ -60,7 +60,7 @@ const EnterprisePage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-site-primary pt-32 pb-16 text-white">
+      <div className="bg-site-primary pt-28 sm:pt-32 pb-14 sm:pb-16 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
             Enterprise
@@ -75,8 +75,8 @@ const EnterprisePage = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {features.map((feature) => (
             <div
               key={feature.title}
@@ -91,7 +91,7 @@ const EnterprisePage = () => {
           ))}
         </div>
 
-        <div className="bg-white/90 p-12 rounded-3xl shadow-sm border border-white/70 mb-16">
+        <div className="bg-white/90 p-6 sm:p-12 rounded-3xl shadow-sm border border-white/70 mb-12 sm:mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="font-display text-3xl font-semibold mb-6 text-site-primary">
@@ -128,7 +128,7 @@ const EnterprisePage = () => {
           </div>
         </div>
 
-        <div className="bg-site-primary text-white p-12 rounded-3xl text-center">
+        <div className="bg-site-primary text-white p-8 sm:p-12 rounded-3xl text-center">
           <h2 className="font-display text-3xl font-semibold mb-4">
             Ready to scale your creative operations?
           </h2>

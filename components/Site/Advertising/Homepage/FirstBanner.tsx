@@ -7,7 +7,7 @@ type Props = {};
 
 const FirstBanner = (props: Props) => {
   return (
-    <div className="max-w-6xl mx-auto px-4 pb-12 pt-28 lg:pt-36 select-none">
+    <div className="max-w-6xl mx-auto px-4 pb-12 pt-24 sm:pt-28 lg:pt-36 select-none">
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
         <div className="flex flex-col gap-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-site-textHeadingLight">
@@ -36,7 +36,7 @@ const FirstBanner = (props: Props) => {
               </Button>
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-sm text-zinc-200">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 text-sm text-zinc-200">
             <div>
               <div className="text-2xl font-semibold text-site-btnPrimary">
                 72 hrs
@@ -61,8 +61,15 @@ const FirstBanner = (props: Props) => {
           <div className="w-full h-20 z-10 absolute top-0 left-0 bg-gradient-to-b from-site-primary to-transparent"></div>
           <div className="w-full h-20 z-10 absolute bottom-0 left-0 bg-gradient-to-t from-site-primary to-transparent"></div>
           <Reels fps={14} />
-          <Reels invert speed={0.01} fps={14} />
+          <Reels invert speed={1} fps={14} />
           <Reels fps={14} />
+        </div>
+      </div>
+      <div className="mt-10 lg:hidden relative">
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-site-primary to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-site-primary to-transparent z-10"></div>
+        <div className="rounded-3xl border border-white/15 bg-white/5 p-4 backdrop-blur">
+          <Reels direction="horizontal" gap={14} speed={0.6} fps={40} />
         </div>
       </div>
     </div>

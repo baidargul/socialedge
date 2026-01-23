@@ -66,7 +66,7 @@ const WhyUsPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-site-primary pt-32 pb-16 text-white">
+      <div className="bg-site-primary pt-28 sm:pt-32 pb-14 sm:pb-16 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
             Why SocialEdge
@@ -81,8 +81,8 @@ const WhyUsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {reasons.map((reason) => (
             <div
               key={reason.title}
@@ -97,7 +97,7 @@ const WhyUsPage = () => {
           ))}
         </div>
 
-        <div className="bg-white/90 p-10 rounded-3xl shadow-sm border border-white/70 mb-16">
+        <div className="bg-white/90 p-6 sm:p-10 rounded-3xl shadow-sm border border-white/70 mb-12 sm:mb-16">
           <h2 className="font-display text-3xl font-semibold text-center mb-10 text-site-primary">
             Numbers that matter
           </h2>
@@ -113,8 +113,8 @@ const WhyUsPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-          <div className="rounded-3xl bg-site-primary text-white p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-10 items-center">
+          <div className="rounded-3xl bg-site-primary text-white p-6 sm:p-10">
             <div className="flex items-center gap-3 text-site-btnPrimary">
               <ShieldCheck size={20} />
               <span className="text-sm uppercase tracking-[0.3em]">
@@ -137,7 +137,7 @@ const WhyUsPage = () => {
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl bg-white/90 border border-white/70 p-10">
+          <div className="rounded-3xl bg-white/90 border border-white/70 p-6 sm:p-10">
             <h3 className="font-display text-2xl font-semibold text-site-primary">
               Ready to experience the difference?
             </h3>

@@ -107,7 +107,7 @@ export default function Home() {
         <FirstBanner />
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-site-primary/60">
@@ -145,8 +145,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+      <section className="max-w-6xl mx-auto px-4 pb-16 sm:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-12 items-center">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-site-primary/60">
               What we deliver
@@ -192,8 +192,8 @@ export default function Home() {
       </section>
 
       <section className="bg-white/70 border-y border-white/70">
-        <div className="max-w-6xl mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+        <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-12 items-center">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {caseStudies.map((study) => (
                 <div
@@ -259,8 +259,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+      <section className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-12 items-center">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-site-primary/60">
               How it works
@@ -296,8 +296,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 pb-20">
-        <div className="rounded-3xl bg-site-primary text-white p-10 md:p-12">
+      <section className="max-w-6xl mx-auto px-4 pb-16 sm:pb-20">
+        <div className="rounded-3xl bg-site-primary text-white p-8 sm:p-10 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
@@ -343,8 +343,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 pb-24">
-        <div className="rounded-3xl border border-white/70 bg-white/80 p-10 md:p-12 text-center">
+      <section className="max-w-6xl mx-auto px-4 pb-20 sm:pb-24">
+        <div className="rounded-3xl border border-white/70 bg-white/80 p-8 sm:p-10 md:p-12 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-site-primary">
             Ready to build your content engine?
           </h2>

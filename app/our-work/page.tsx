@@ -74,7 +74,7 @@ const OurWorkPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-site-primary pt-32 pb-16 text-white">
+      <div className="bg-site-primary pt-28 sm:pt-32 pb-14 sm:pb-16 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
             Our Work
@@ -89,8 +89,8 @@ const OurWorkPage = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project) => (
             <div
               key={project.title}
@@ -127,7 +127,7 @@ const OurWorkPage = () => {
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-10 items-center">
           <div className="rounded-3xl bg-site-primary text-white p-10">
             <h2 className="font-display text-3xl font-semibold">
               Our projects are built to scale.

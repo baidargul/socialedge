@@ -74,7 +74,7 @@ const ResourcesPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-site-primary pt-32 pb-16 text-white">
+      <div className="bg-site-primary pt-28 sm:pt-32 pb-14 sm:pb-16 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
             Resources
@@ -89,12 +89,12 @@ const ResourcesPage = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
         <section className="mb-16">
           <h2 className="font-display text-3xl font-semibold mb-8 text-site-primary">
             Free resources
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {resources.map((resource) => (
               <div
                 key={resource.title}
@@ -132,7 +132,7 @@ const ResourcesPage = () => {
           <h2 className="font-display text-3xl font-semibold mb-8 text-site-primary">
             Latest insights
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {blogPosts.map((post) => (
               <div
                 key={post.title}
@@ -154,7 +154,7 @@ const ResourcesPage = () => {
           </div>
         </section>
 
-        <section className="bg-site-primary text-white p-12 rounded-3xl text-center">
+        <section className="bg-site-primary text-white p-8 sm:p-12 rounded-3xl text-center">
           <h2 className="font-display text-3xl font-semibold mb-4">
             Want a custom creative roadmap?
           </h2>

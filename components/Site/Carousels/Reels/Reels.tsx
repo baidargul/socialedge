@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 type ReelProps = {
   gap?: number;
@@ -11,12 +10,14 @@ type ReelProps = {
   fps?: number; // Frames per second
   images?: ReelImageType[];
   className?: string;
+  pauseOnHover?: boolean;
 };
 
 export type ReelImageType = {
   image: string;
   alt: string;
   linK?: string;
+  link?: string;
   title?: string;
   description?: string;
 };
@@ -34,76 +35,113 @@ const Reels = ({
     { image: `/carousels/01.avif`, alt: "Image 4" },
   ],
   className = "",
+  pauseOnHover = false,
 }: ReelProps) => {
   const reelRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [offset, setOffset] = useState(0);
+  const pointerRef = useRef<{ active: boolean; last: number }>({
+    active: false,
+    last: 0,
+  });
+  const offsetRef = useRef(0);
+  const sizeRef = useRef(0);
 
-  const addImages = () => {
-    const newImages = [...images];
-    return newImages;
-  };
+  const loopImages = useMemo(() => {
+    if (!images || images.length === 0) return [];
+    const repeat = 3;
+    return Array.from({ length: repeat }, () => images).flat();
+  }, [images]);
 
-  // Ensure seamless scrolling
+  // Measure track size so we can loop smoothly with transforms.
   useEffect(() => {
-    if (!isHovered && !dragging) {
-      const interval = setInterval(() => {
-        if (reelRef.current) {
-          const scrollAmount = invert ? -speed : speed;
+    const track = trackRef.current;
+    if (!track) return;
 
-          if (direction === "vertical") {
-            reelRef.current.scrollTop += scrollAmount;
-            if (reelRef.current.scrollTop <= 0 && invert) {
-              reelRef.current.scrollTop = reelRef.current.scrollHeight / 2;
-              images.unshift(...addImages());
-            } else if (
-              reelRef.current.scrollTop >= reelRef.current.scrollHeight / 2 &&
-              !invert
-            ) {
-              reelRef.current.scrollTop = 0; // Reset scroll
-              images.unshift(...addImages());
-            }
-          } else {
-            reelRef.current.scrollLeft += scrollAmount;
-            if (reelRef.current.scrollLeft <= 0 && invert) {
-              reelRef.current.scrollLeft = reelRef.current.scrollWidth / 2;
-              images.unshift(...addImages());
-            } else if (
-              reelRef.current.scrollLeft >= reelRef.current.scrollWidth / 2 &&
-              !invert
-            ) {
-              reelRef.current.scrollLeft = 0; // Reset scroll
-              images.unshift(...addImages());
-            }
-          }
-        }
-      }, 1000 / fps);
+    const updateSize = () => {
+      const size =
+        direction === "vertical" ? track.scrollHeight : track.scrollWidth;
+      sizeRef.current = size / 3;
+    };
 
-      return () => clearInterval(interval);
-    }
-  }, [isHovered, dragging, direction, invert, speed, fps, images]);
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, [direction, loopImages.length]);
 
-  // Handle dragging
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setDragging(true);
-    setOffset(direction === "vertical" ? e.clientY : e.clientX);
-  };
+  // Smooth animation using requestAnimationFrame + transforms.
+  useEffect(() => {
+    let animationFrame = 0;
+    let lastTime = performance.now();
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (dragging && reelRef.current) {
-      const delta = offset - (direction === "vertical" ? e.clientY : e.clientX);
-      if (direction === "vertical") {
-        reelRef.current.scrollTop += delta;
-      } else {
-        reelRef.current.scrollLeft += delta;
+    const step = (now: number) => {
+      const track = trackRef.current;
+      if (
+        track &&
+        sizeRef.current > 0 &&
+        (!pauseOnHover || !isHovered) &&
+        !dragging
+      ) {
+        const delta = now - lastTime;
+        const frame = 1000 / fps;
+        const scrollAmount = (invert ? -1 : 1) * speed * (delta / frame);
+        offsetRef.current += scrollAmount;
+        const size = sizeRef.current;
+
+        offsetRef.current = ((offsetRef.current % size) + size) % size;
+
+        const translate =
+          direction === "vertical"
+            ? `translate3d(0, ${-offsetRef.current}px, 0)`
+            : `translate3d(${-offsetRef.current}px, 0, 0)`;
+        track.style.transform = translate;
       }
-      setOffset(direction === "vertical" ? e.clientY : e.clientX);
-    }
+
+      lastTime = now;
+      animationFrame = requestAnimationFrame(step);
+    };
+
+    animationFrame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [
+    isHovered,
+    dragging,
+    direction,
+    invert,
+    speed,
+    fps,
+    loopImages.length,
+    pauseOnHover,
+  ]);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    pointerRef.current.active = true;
+    pointerRef.current.last = direction === "vertical" ? e.clientY : e.clientX;
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const handleMouseUp = () => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!pointerRef.current.active || !trackRef.current) return;
+    const current = direction === "vertical" ? e.clientY : e.clientX;
+    const delta = pointerRef.current.last - current;
+    offsetRef.current += delta;
+    const size = sizeRef.current || 1;
+    offsetRef.current = ((offsetRef.current % size) + size) % size;
+    const translate =
+      direction === "vertical"
+        ? `translate3d(0, ${-offsetRef.current}px, 0)`
+        : `translate3d(${-offsetRef.current}px, 0, 0)`;
+    trackRef.current.style.transform = translate;
+    pointerRef.current.last = current;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    pointerRef.current.active = false;
     setDragging(false);
+    e.currentTarget.releasePointerCapture(e.pointerId);
   };
 
   return (
@@ -114,56 +152,59 @@ const Reels = ({
       } overflow-hidden ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={() => {
+        pointerRef.current.active = false;
+        setDragging(false);
+      }}
       style={{ cursor: dragging ? "grabbing" : "grab" }}
     >
       <div
-        className={`flex ${direction === "vertical" ? "flex-col" : "flex-row"}`}
+        ref={trackRef}
+        className={`flex ${direction === "vertical" ? "flex-col min-h-max" : "flex-row min-w-max"}`}
         style={{
           gap: `${gap}px`,
           flexWrap: "nowrap",
+          willChange: "transform",
         }}
       >
-        {/* Render images twice for seamless looping */}
-        {images
-          .concat(images)
-          .concat(images)
-          .concat(images)
-          .map((image, index) => (
-            <motion.div
-              key={index}
-              className="flex-shrink-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="relative">
-                <Image
-                  src={image.image}
-                  width={200}
-                  height={200}
-                  className="rounded-xl select-none"
-                  alt={image.alt}
-                  draggable={false}
-                />
-                {image.title && image.title.length > 0 && (
-                  <div className="absolute z-20 bottom-1 text-white flex justify-center items-center text-center w-full">
-                    {image.title}
-                  </div>
-                )}
-                {/* {image.description && image.description.length > 0 && (
-                  <div className="absolute z-20 bottom-0 text-white">
-                    {image.description}
-                  </div>
-                )} */}
-                {image.title && image.title.length > 0 && (
-                  <div className="w-full h-[40%] rounded-b-xl  absolute bottom-0 z-10 bg-gradient-to-t from-black/60 to-transparent"></div>
-                )}
-              </div>
-            </motion.div>
-          ))}
+        {loopImages.map((image, index) => {
+          const href = image.link ?? image.linK;
+          const content = (
+            <div className="relative">
+              <Image
+                src={image.image}
+                width={200}
+                height={200}
+                className="rounded-xl select-none"
+                alt={image.alt}
+                draggable={false}
+              />
+              {image.title && image.title.length > 0 && (
+                <div className="absolute z-20 bottom-1 text-white flex justify-center items-center text-center w-full text-sm">
+                  {image.title}
+                </div>
+              )}
+              {image.title && image.title.length > 0 && (
+                <div className="w-full h-[40%] rounded-b-xl absolute bottom-0 z-10 bg-gradient-to-t from-black/60 to-transparent"></div>
+              )}
+            </div>
+          );
+
+          return (
+            <div key={`${image.image}-${index}`} className="flex-shrink-0">
+              {href ? (
+                <a href={href} aria-label={image.alt} className="block">
+                  {content}
+                </a>
+              ) : (
+                content
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

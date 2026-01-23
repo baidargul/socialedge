@@ -79,7 +79,7 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="bg-site-primary pt-32 pb-16 text-white">
+      <div className="bg-site-primary pt-28 sm:pt-32 pb-14 sm:pb-16 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-site-btnPrimary/70">
             Services
@@ -108,8 +108,8 @@ const ServicesPage = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service) => (
             <div
               key={service.title}
@@ -132,8 +132,8 @@ const ServicesPage = () => {
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10">
-          <div className="rounded-3xl bg-white/80 border border-white/70 p-8">
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 sm:gap-10">
+          <div className="rounded-3xl bg-white/80 border border-white/70 p-6 sm:p-8">
             <h2 className="font-display text-3xl font-semibold text-site-primary">
               Our production workflow
             </h2>
@@ -161,7 +161,7 @@ const ServicesPage = () => {
               ))}
             </div>
           </div>
-          <div className="rounded-3xl bg-site-primary text-white p-8">
+          <div className="rounded-3xl bg-site-primary text-white p-6 sm:p-8">
             <h2 className="font-display text-3xl font-semibold">
               What you get every week
             </h2>
