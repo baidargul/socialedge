@@ -17,6 +17,13 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
+        display: ["var(--font-display)", "ui-serif", "serif"],
+      },
+      boxShadow: {
+        soft: "0 20px 60px rgba(10, 33, 31, 0.15)",
+      },
     },
   },
   plugins: [],

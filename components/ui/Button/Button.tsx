@@ -9,17 +9,18 @@ type Props = {
 
 const Button = (props: Props) => {
   let style =
-    "border-transparent bg-site-btnPrimary text-site-primary font-semibold";
+    "border-transparent bg-site-btnPrimary text-site-primary font-semibold hover:bg-[#c9f76f]";
   if (props.style === "filled") {
     style =
-      "bg-site-btnPrimary border-transparent text-site-primary font-semibold";
+      "bg-site-btnPrimary border-transparent text-site-primary font-semibold hover:bg-[#c9f76f]";
   } else if (props.style === "outlined") {
-    style = "border-zinc-100";
+    style = "border-current text-current hover:bg-white/10";
   }
 
   return (
     <button
-      className={`rounded-full p-4 px-6 border-2 ${style} ${props.className}`}
+      type="button"
+      className={`inline-flex items-center justify-center rounded-full border-2 px-6 py-3 text-sm transition-colors ${style} ${props.className}`}
     >
       {props.children}
     </button>

@@ -18,16 +18,14 @@ const MainMenu = (props: Props) => {
       onMouseLeave={() => handleMenu("")}
     >
       <div className="flex justify-center items-center gap-4 font-semibold select-none">
-        <MenuItem title="Services" setMenu={handleMenu}>
+        <MenuItem title="Services" href="/services" setMenu={handleMenu}>
           <Services />
         </MenuItem>
-        <MenuItem title="Our Work" setMenu={handleMenu}>
-          <Services />
-        </MenuItem>
-        <MenuItem title="Why Us" setMenu={handleMenu} />
-        <MenuItem title="Resources" setMenu={handleMenu} />
-        <MenuItem title="Pricing" setMenu={handleMenu} />
-        <MenuItem title="Enterprise" setMenu={handleMenu} />
+        <MenuItem title="Our Work" href="/our-work" setMenu={handleMenu} />
+        <MenuItem title="Why Us" href="/why-us" setMenu={handleMenu} />
+        <MenuItem title="Resources" href="/resources" setMenu={handleMenu} />
+        <MenuItem title="Pricing" href="/pricing" setMenu={handleMenu} />
+        <MenuItem title="Enterprise" href="/enterprise" setMenu={handleMenu} />
       </div>
       <div
         onMouseEnter={() => handleMenu(currentMenu)}

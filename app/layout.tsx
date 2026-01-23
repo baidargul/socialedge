@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Site/Header/Navbar";
+import Footer from "@/components/Site/Footer/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "SocialEdge Creative - Social Media Management",
-  description: "SpcialEdge Creative is a social media management tool.",
+  title: "SocialEdge Creative - Video Editing & Marketing",
+  description:
+    "SocialEdge Creative is a video editing and marketing partner for growth teams.",
 };
 
 export default function RootLayout({
@@ -26,10 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} w-full max-w-[1550px] h-full bg-zinc-100 mx-auto tracking-tight antialiased`}
+        className={`${spaceGrotesk.variable} ${fraunces.variable} w-full max-w-[1550px] min-h-screen mx-auto tracking-tight antialiased font-sans text-slate-900`}
       >
         <Navbar />
-        {children}
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
