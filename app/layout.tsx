@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${fraunces.variable} w-full max-w-[1550px] min-h-screen mx-auto tracking-tight antialiased font-sans text-slate-900`}
+        className={`${spaceGrotesk.variable} ${fraunces.variable} w-full max-w-[1550px] select-none min-h-screen mx-auto tracking-tight antialiased font-sans text-slate-900`}
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>
