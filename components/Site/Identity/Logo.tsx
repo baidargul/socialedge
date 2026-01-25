@@ -11,8 +11,8 @@ const Logo = (props: Props) => {
         <Image
           src="/identity/socialedge+.png"
           alt="Logo"
-          width={150}
-          height={150}
+          width={170}
+          height={170}
           className="pointer-events-none -mr-4 select-none object-contain"
         />
       </div>
