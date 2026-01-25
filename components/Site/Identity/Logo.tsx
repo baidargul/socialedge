@@ -9,7 +9,7 @@ const Logo = (props: Props) => {
     <Link href="/">
       <div className="">
         <Image
-          src="/identity/socialedge+.png"
+          src="/identity/socialedge.png"
           alt="Logo"
           width={170}
           height={170}
