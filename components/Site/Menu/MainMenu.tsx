@@ -17,7 +17,7 @@ const MainMenu = (props: Props) => {
       className="relative p-2 select-none"
       onMouseLeave={() => handleMenu("")}
     >
-      <div className="flex justify-center items-center gap-4 font-semibold select-none">
+      <div className="flex justify-center items-center text-nowrap gap-4 font-semibold select-none">
         <MenuItem title="Services" href="/services" setMenu={handleMenu}>
           <Services />
         </MenuItem>

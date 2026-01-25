@@ -78,7 +78,7 @@ const Navbar = (props: Props) => {
             <div className="mt-6 grid grid-cols-1 gap-3">
               <Link
                 href="/pricing"
-                className="rounded-full bg-site-primary px-6 py-3 text-center text-white font-semibold hover:bg-site-primary/90 transition-colors"
+                className="rounded-full text-nowrap bg-site-primary px-6 py-3 text-center text-white font-semibold hover:bg-site-primary/90 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Book a Strategy Call

@@ -9,11 +9,11 @@ const Logo = (props: Props) => {
     <Link href="/">
       <div className="">
         <Image
-          src="/identity/socialedge.png"
+          src="/identity/socialedge+.png"
           alt="Logo"
-          width={100}
-          height={100}
-          className="pointer-events-none select-none"
+          width={150}
+          height={150}
+          className="pointer-events-none -mr-4 select-none object-contain"
         />
       </div>
     </Link>
