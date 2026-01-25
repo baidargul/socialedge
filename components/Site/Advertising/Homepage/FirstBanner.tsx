@@ -60,9 +60,9 @@ const FirstBanner = (props: Props) => {
         <div className="hidden lg:flex gap-3 relative h-[520px] -mt-8">
           <div className="w-full h-20 z-10 absolute top-0 left-0 bg-gradient-to-b from-site-primary to-transparent"></div>
           <div className="w-full h-20 z-10 absolute bottom-0 left-0 bg-gradient-to-t from-site-primary to-transparent"></div>
-          <Reels fps={14} />
-          <Reels invert speed={1} fps={14} />
-          <Reels fps={14} />
+          <Reels fps={14} startIndex={1} />
+          <Reels invert speed={1} fps={14} startIndex={3} />
+          <Reels fps={14} startIndex={0} />
         </div>
       </div>
       <div className="mt-10 lg:hidden relative">

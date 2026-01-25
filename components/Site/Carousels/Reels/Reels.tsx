@@ -11,6 +11,7 @@ type ReelProps = {
   images?: ReelImageType[];
   className?: string;
   pauseOnHover?: boolean;
+  startIndex?: number; // NEW: start from a specific image index
 };
 
 export type ReelImageType = {
@@ -28,31 +29,45 @@ const Reels = ({
   invert = false,
   speed = 1,
   fps = 60,
+  startIndex = 0,
   images = [
-    { image: `/carousels/01.avif`, alt: "Image 1" },
-    { image: `/carousels/01.avif`, alt: "Image 2" },
-    { image: `/carousels/01.avif`, alt: "Image 3" },
-    { image: `/carousels/01.avif`, alt: "Image 4" },
+    { image: `/carousels/0125(1).gif`, alt: "Image 1" },
+    { image: `/carousels/0125(2).gif`, alt: "Image 2" },
+    { image: `/carousels/0125(3).gif`, alt: "Image 3" },
+    { image: `/carousels/0125(4).gif`, alt: "Image 4" },
+    { image: `/carousels/0125(5).gif`, alt: "Image 5" },
   ],
   className = "",
   pauseOnHover = false,
 }: ReelProps) => {
   const reelRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+
   const [isHovered, setIsHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
+
   const pointerRef = useRef<{ active: boolean; last: number }>({
     active: false,
     last: 0,
   });
+
   const offsetRef = useRef(0);
   const sizeRef = useRef(0);
 
   const loopImages = useMemo(() => {
     if (!images || images.length === 0) return [];
+
+    const safeIndex =
+      ((startIndex % images.length) + images.length) % images.length;
+
+    const rotated = [
+      ...images.slice(safeIndex),
+      ...images.slice(0, safeIndex),
+    ];
+
     const repeat = 3;
-    return Array.from({ length: repeat }, () => images).flat();
-  }, [images]);
+    return Array.from({ length: repeat }, () => rotated).flat();
+  }, [images, startIndex]);
 
   // Measure track size so we can loop smoothly with transforms.
   useEffect(() => {
@@ -62,7 +77,19 @@ const Reels = ({
     const updateSize = () => {
       const size =
         direction === "vertical" ? track.scrollHeight : track.scrollWidth;
+
+      // Because we repeat the rotated list 3 times.
       sizeRef.current = size / 3;
+
+      // Keep offset in bounds after resize
+      const base = sizeRef.current || 1;
+      offsetRef.current = ((offsetRef.current % base) + base) % base;
+
+      const translate =
+        direction === "vertical"
+          ? `translate3d(0, ${-offsetRef.current}px, 0)`
+          : `translate3d(${-offsetRef.current}px, 0, 0)`;
+      track.style.transform = translate;
     };
 
     updateSize();
@@ -71,6 +98,19 @@ const Reels = ({
     return () => observer.disconnect();
   }, [direction, loopImages.length]);
 
+  // Reset offset when the startIndex/images change so the new start is respected.
+  useEffect(() => {
+    offsetRef.current = 0;
+    const track = trackRef.current;
+    if (!track) return;
+
+    const translate =
+      direction === "vertical"
+        ? `translate3d(0, ${-offsetRef.current}px, 0)`
+        : `translate3d(${-offsetRef.current}px, 0, 0)`;
+    track.style.transform = translate;
+  }, [startIndex, direction, images]);
+
   // Smooth animation using requestAnimationFrame + transforms.
   useEffect(() => {
     let animationFrame = 0;
@@ -78,6 +118,7 @@ const Reels = ({
 
     const step = (now: number) => {
       const track = trackRef.current;
+
       if (
         track &&
         sizeRef.current > 0 &&
@@ -86,16 +127,18 @@ const Reels = ({
       ) {
         const delta = now - lastTime;
         const frame = 1000 / fps;
+
         const scrollAmount = (invert ? -1 : 1) * speed * (delta / frame);
         offsetRef.current += scrollAmount;
-        const size = sizeRef.current;
 
+        const size = sizeRef.current;
         offsetRef.current = ((offsetRef.current % size) + size) % size;
 
         const translate =
           direction === "vertical"
             ? `translate3d(0, ${-offsetRef.current}px, 0)`
             : `translate3d(${-offsetRef.current}px, 0, 0)`;
+
         track.style.transform = translate;
       }
 
@@ -125,15 +168,20 @@ const Reels = ({
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!pointerRef.current.active || !trackRef.current) return;
+
     const current = direction === "vertical" ? e.clientY : e.clientX;
     const delta = pointerRef.current.last - current;
+
     offsetRef.current += delta;
+
     const size = sizeRef.current || 1;
     offsetRef.current = ((offsetRef.current % size) + size) % size;
+
     const translate =
       direction === "vertical"
         ? `translate3d(0, ${-offsetRef.current}px, 0)`
         : `translate3d(${-offsetRef.current}px, 0, 0)`;
+
     trackRef.current.style.transform = translate;
     pointerRef.current.last = current;
   };
@@ -163,7 +211,11 @@ const Reels = ({
     >
       <div
         ref={trackRef}
-        className={`flex ${direction === "vertical" ? "flex-col min-h-max" : "flex-row min-w-max"}`}
+        className={`flex ${
+          direction === "vertical"
+            ? "flex-col min-h-max"
+            : "flex-row min-w-max"
+        }`}
         style={{
           gap: `${gap}px`,
           flexWrap: "nowrap",
@@ -172,6 +224,7 @@ const Reels = ({
       >
         {loopImages.map((image, index) => {
           const href = image.link ?? image.linK;
+
           const content = (
             <div className="relative">
               <Image
@@ -182,13 +235,15 @@ const Reels = ({
                 alt={image.alt}
                 draggable={false}
               />
+
               {image.title && image.title.length > 0 && (
                 <div className="absolute z-20 bottom-1 text-white flex justify-center items-center text-center w-full text-sm">
                   {image.title}
                 </div>
               )}
+
               {image.title && image.title.length > 0 && (
-                <div className="w-full h-[40%] rounded-b-xl absolute bottom-0 z-10 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="w-full h-[40%] rounded-b-xl absolute bottom-0 z-10 bg-gradient-to-t from-black/60 to-transparent" />
               )}
             </div>
           );
