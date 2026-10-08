@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "SocialEdge Creative",
   description:
-    "SocialEdge Creative is a video editing and marketing partner for growth teams.",
+    "SocialEdge Creative provides video editing, social media management, branding, creative strategy and digital development.",
   url:
     (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.socialedgecreative.com").replace(
       /\/+$/,

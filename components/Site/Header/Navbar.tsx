@@ -13,8 +13,7 @@ const navLinks = [
   { label: "Our Work", href: "/our-work" },
   { label: "Why Us", href: "/why-us" },
   { label: "Resources", href: "/resources" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Enterprise", href: "/enterprise" },
+  { label: "Start a Project", href: "/pricing#booking" },
 ];
 
 const Navbar = (props: Props) => {
@@ -77,18 +76,18 @@ const Navbar = (props: Props) => {
             </nav>
             <div className="mt-6 grid grid-cols-1 gap-3">
               <Link
-                href="/pricing"
+                href="/pricing#booking"
                 className="rounded-full text-nowrap bg-site-primary px-6 py-3 text-center text-white font-semibold hover:bg-site-primary/90 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Book a Strategy Call
+                Start a Project
               </Link>
               <Link
-                href="/resources"
+                href="/our-work"
                 className="rounded-full border border-site-primary px-6 py-3 text-center font-semibold text-site-primary hover:bg-site-primary/5 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Browse Resources
+                View Our Work
               </Link>
             </div>
           </div>

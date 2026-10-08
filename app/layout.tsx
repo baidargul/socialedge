@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Site/Header/Navbar";
-import Footer from "@/components/Site/Footer/Footer";
+import SiteChrome from "@/components/Site/SiteChrome";
 import { siteConfig } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
@@ -18,7 +17,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "SocialEdge Creative - Video Editing & Marketing",
+    default: "SocialEdge Creative | Content, Video & Digital",
     template: "%s | SocialEdge Creative",
   },
   description: siteConfig.description,
@@ -40,14 +39,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteConfig.url,
-    title: "SocialEdge Creative - Video Editing & Marketing",
+    title: "SocialEdge Creative | Content, Video & Digital",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SocialEdge Creative - Video Editing & Marketing",
+    title: "SocialEdge Creative | Content, Video & Digital",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -87,11 +86,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${fraunces.variable} w-full max-w-[1550px] select-none min-h-screen mx-auto tracking-tight antialiased font-sans text-slate-900`}
+        className={`${spaceGrotesk.variable} ${fraunces.variable} w-full min-h-screen tracking-tight antialiased font-sans text-slate-900`}
       >
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

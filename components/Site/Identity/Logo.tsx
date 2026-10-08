@@ -9,8 +9,8 @@ const Logo = (props: Props) => {
     <Link href="/">
       <div className="">
         <Image
-          src="/identity/socialedge.png"
-          alt="Logo"
+          src="/identity/SocialEdge.png"
+          alt="SocialEdge Creative"
           width={170}
           height={170}
           className="pointer-events-none -mr-4 select-none object-contain"

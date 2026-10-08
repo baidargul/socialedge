@@ -14,17 +14,17 @@ const MenuButtons = ({ tone = "light" }: Props) => {
 
   return (
     <div className="flex gap-3 items-start">
-      <Link href="/pricing">
+      <Link href="/pricing#booking">
         <Button className="px-5 py-2 text-sm" style="filled">
-          Book a Call
+          Start a Project
         </Button>
       </Link>
-      <Link href="/resources">
+      <Link href="/our-work">
         <Button
           className={`px-5 py-2 text-sm ${outlineClasses}`}
           style="outlined"
         >
-          View Resources
+          View Work
         </Button>
       </Link>
     </div>

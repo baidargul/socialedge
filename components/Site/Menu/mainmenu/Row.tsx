@@ -1,17 +1,20 @@
 import { Dot } from "lucide-react";
 import React from "react";
+import Link from "next/link";
 
 type Props = {
   title: string;
   description: string;
   icon: React.ReactNode;
   tone?: "light" | "dark";
+  href?: string;
 };
 
 export type MenuRowType = {
   title: string;
   description: string;
   icon: React.ReactNode;
+  href?: string;
 };
 
 const Row = (props: Props) => {
@@ -25,7 +28,8 @@ const Row = (props: Props) => {
   const desc = tone === "dark" ? "text-gray-200" : "text-zinc-700";
 
   return (
-    <div
+    <Link
+      href={props.href ?? "/services"}
       className={`flex justify-between items-center py-2 border-b ${border} group cursor-pointer hover:pl-2 ${hover} transition-all duration-200`}
     >
       <div>
@@ -42,7 +46,7 @@ const Row = (props: Props) => {
         </div>
       </div>
       <div>{props.icon}</div>
-    </div>
+    </Link>
   );
 };
 

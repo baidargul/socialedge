@@ -22,3 +22,33 @@ body::before {
     radial-gradient(900px 500px at 90% 20%, rgba(141, 253, 186, 0.12), transparent 65%),
     radial-gradient(600px 600px at 50% 90%, rgba(10, 33, 31, 0.08), transparent 70%);
 }
+
+@layer components {
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[.3em] text-emerald-700; }
+  .section-title { @apply mt-3 font-display text-3xl font-semibold leading-tight text-site-primary sm:text-4xl; }
+}
+
+html { scroll-behavior: smooth; }
+button, a, input, select, textarea { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2; }
+
+.shorts-stack { position: relative; }
+.shorts-stack-column { animation: shorts-scroll 32s linear infinite; }
+.shorts-stack-reverse { animation-direction: reverse; animation-duration: 38s; transform: translateY(-35%); }
+.shorts-stack:hover .shorts-stack-column { animation-play-state: paused; }
+.shorts-stack:focus-within .shorts-stack-column,
+.shorts-stack-paused .shorts-stack-column { animation-play-state: paused; }
+
+@keyframes shorts-scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-50% - 0.375rem)); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.375rem)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shorts-stack-column { animation: none; }
+  .shorts-stack-reverse { transform: translateY(-18%); }
+}

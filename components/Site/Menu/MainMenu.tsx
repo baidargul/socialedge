@@ -24,8 +24,7 @@ const MainMenu = (props: Props) => {
         <MenuItem title="Our Work" href="/our-work" setMenu={handleMenu} />
         <MenuItem title="Why Us" href="/why-us" setMenu={handleMenu} />
         <MenuItem title="Resources" href="/resources" setMenu={handleMenu} />
-        <MenuItem title="Pricing" href="/pricing" setMenu={handleMenu} />
-        <MenuItem title="Enterprise" href="/enterprise" setMenu={handleMenu} />
+        <MenuItem title="For Teams" href="/enterprise" setMenu={handleMenu} />
       </div>
       <div
         onMouseEnter={() => handleMenu(currentMenu)}

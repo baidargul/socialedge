@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/site";
+import { services } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = new URL(siteConfig.url);
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     "/resources",
     "/enterprise",
+    ...services.map((service) => `/services/${service.slug}`),
   ];
 
   const lastModified = new Date();
