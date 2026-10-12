@@ -7,5 +7,5 @@ export const siteConfig = {
       /\/+$/,
       "",
     ),
-  ogImage: "/identity/SocialEdge.png",
+  ogImage: "/identity/socialedge.png",
 };
