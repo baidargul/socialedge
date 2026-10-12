@@ -31,6 +31,42 @@ body::before {
 html { scroll-behavior: smooth; }
 button, a, input, select, textarea { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2; }
 
+.orbit-ambient {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(216,255,133,.12), transparent 19%),
+    radial-gradient(circle at 50% 50%, #15342f 0%, #091311 38%, #070a0a 72%);
+}
+.orbit-scene { perspective: 1100px; perspective-origin: 50% 48%; }
+.orbit-ring {
+  position: relative;
+  width: 180px;
+  height: 300px;
+  transform-style: preserve-3d;
+  animation: orbit-cylinder 34s linear infinite;
+}
+.orbit-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 1.2rem;
+  background: #101716;
+  transform: rotateY(var(--orbit-angle)) translateZ(440px);
+  backface-visibility: hidden;
+  box-shadow: 0 25px 70px rgba(0,0,0,.55);
+}
+.orbit-card video { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) brightness(.65); }
+.orbit-card-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.05), transparent 55%, rgba(0,0,0,.4)); }
+.orbit-logo { filter: drop-shadow(0 12px 35px rgba(0,0,0,.8)); animation: orbit-logo-breathe 5s ease-in-out infinite; }
+@keyframes orbit-cylinder { to { transform: rotateY(-360deg); } }
+@keyframes orbit-logo-breathe { 50% { transform: scale(1.018); filter: drop-shadow(0 16px 45px rgba(216,255,133,.12)); } }
+
+@media (max-width: 640px) {
+  .orbit-scene { perspective: 800px; transform: translateY(-25px); }
+  .orbit-ring { width: 120px; height: 210px; }
+  .orbit-card { transform: rotateY(var(--orbit-angle)) translateZ(275px); border-radius: .85rem; }
+}
+
 .shorts-stack { position: relative; }
 .shorts-stack-column { animation: shorts-scroll 32s linear infinite; }
 .shorts-stack-reverse { animation-direction: reverse; animation-duration: 38s; transform: translateY(-35%); }
@@ -100,4 +136,5 @@ button, a, input, select, textarea { @apply focus-visible:outline-none focus-vis
   .service-editorial-row::before { transition: none; }
   .footer-curtain { display: none; }
   .footer-content, .footer-brand img { opacity: 1; transform: none; transition: none; }
+  .orbit-ring, .orbit-logo { animation: none; }
 }

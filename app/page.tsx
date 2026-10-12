@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
 import ShortsGrid from "@/components/Site/ShortsGrid";
-import AnimatedShortsStack from "@/components/Site/AnimatedShortsStack";
+import OrbitHero from "@/components/Site/OrbitHero";
 import CreativeUniverse from "@/components/Site/CreativeUniverse";
 import EditorialServices from "@/components/Site/EditorialServices";
 import { platformFormats, qualityCriteria, siteFaqs, useCases } from "@/lib/content";
@@ -15,15 +15,9 @@ const systemStages = [
 
 export default function Home() {
   return <>
-    <section className="relative overflow-hidden bg-site-primary px-4 pb-20 pt-32 text-white sm:pt-40">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(141,253,186,.16),transparent_32%)]" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_.95fr]">
-        <div><p className="text-xs font-semibold uppercase tracking-[.32em] text-site-btnPrimary">SocialEdge Creatives</p><h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">Content that gets your brand noticed.</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">We transform raw ideas and footage into high-impact social content, polished video and digital experiences built to help businesses grow.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/pricing#booking" className="rounded-full bg-site-btnPrimary px-7 py-3.5 text-center font-semibold text-site-primary">Start a project</Link><Link href="/our-work" className="rounded-full border border-white/30 px-7 py-3.5 text-center font-semibold">Watch our work</Link></div></div>
-        <div className="relative"><AnimatedShortsStack compact /></div>
-      </div>
-    </section>
+    <OrbitHero />
 
-    <section className="mx-auto max-w-6xl px-4 py-20"><div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><p className="eyebrow">What is SocialEdge?</p><h2 className="section-title">A creative partner for the way people watch, shop and connect today.</h2></div><div className="space-y-5 text-lg leading-8 text-slate-600"><p>SocialEdge is a social media management and video editing company that turns raw content into a powerful tool for business growth.</p><p>We create trend-aware work for Instagram, TikTok and YouTube, helping brands strengthen their online presence, engage their audience and turn attention into measurable opportunities.</p></div></div></section>
+    <section id="about" className="mx-auto max-w-6xl px-4 py-20"><div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><p className="eyebrow">What is SocialEdge?</p><h2 className="section-title">A creative partner for the way people watch, shop and connect today.</h2></div><div className="space-y-5 text-lg leading-8 text-slate-600"><p>SocialEdge is a social media management and video editing company that turns raw content into a powerful tool for business growth.</p><p>We create trend-aware work for Instagram, TikTok and YouTube, helping brands strengthen their online presence, engage their audience and turn attention into measurable opportunities.</p></div></div></section>
 
     <section className="border-y border-emerald-950/10 bg-white/70 px-4 py-20"><div className="mx-auto max-w-6xl"><div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr]"><div><p className="eyebrow">Why systems matter</p><h2 className="section-title">More content is not the same as more clarity.</h2><p className="mt-5 leading-7 text-slate-600">When strategy, editing, design and distribution are treated as separate tasks, the brand can feel fragmented. A connected content system gives every asset a role, a shared visual language and a clear destination.</p><p className="mt-4 leading-7 text-slate-600">That means one strong idea can travel further without losing what makes it recognizable.</p></div><div className="grid gap-4 sm:grid-cols-2">{systemStages.map((stage) => <article key={stage.title} className="rounded-2xl border border-emerald-950/10 bg-white p-6"><span className="text-sm font-bold text-emerald-700">{stage.number}</span><h3 className="mt-3 text-xl font-semibold">{stage.title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{stage.text}</p></article>)}</div></div></div></section>
 
