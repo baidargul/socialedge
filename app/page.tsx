@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Check, Layers, MonitorSmartphone, Palette, ShoppingBag, Sparkles, Video } from "lucide-react";
+import { Check } from "lucide-react";
 import ShortsGrid from "@/components/Site/ShortsGrid";
 import AnimatedShortsStack from "@/components/Site/AnimatedShortsStack";
 import CreativeUniverse from "@/components/Site/CreativeUniverse";
-import { platformFormats, qualityCriteria, services, siteFaqs, useCases } from "@/lib/content";
+import EditorialServices from "@/components/Site/EditorialServices";
+import { platformFormats, qualityCriteria, siteFaqs, useCases } from "@/lib/content";
 
-const icons = [Video, Sparkles, ShoppingBag, MonitorSmartphone, Layers, Palette];
 const systemStages = [
   { number: "01", title: "Strategy", text: "Define the audience, message, channel and job each asset needs to do." },
   { number: "02", title: "Production", text: "Turn source ideas and footage into purposeful edits, graphics and digital experiences." },
@@ -31,7 +31,7 @@ export default function Home() {
 
     <section className="overflow-hidden border-b border-emerald-950/10 bg-white py-6"><div className="flex min-w-max animate-[marquee_28s_linear_infinite] gap-3 px-4 motion-reduce:animate-none">{[...platformFormats, ...platformFormats].map((format, index) => <span key={`${format}-${index}`} className="rounded-full border border-emerald-950/10 bg-site-primary/5 px-5 py-2.5 text-sm font-semibold text-site-primary">{format}</span>)}</div></section>
 
-    <section className="border-b border-emerald-950/10 bg-white/65 px-4 py-20"><div className="mx-auto max-w-6xl"><p className="eyebrow">What we offer</p><div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="section-title max-w-2xl">One connected team across content, brand and digital.</h2><Link href="/services" className="font-semibold text-site-primary">Explore every service <ArrowRight className="inline h-4 w-4" /></Link></div><div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{services.map((service, index) => { const Icon = icons[index]; return <Link href={`/services/${service.slug}`} key={service.title} className="group rounded-3xl border border-emerald-950/10 bg-white p-7 transition hover:-translate-y-1 hover:shadow-soft"><Icon className="h-7 w-7 text-emerald-700" /><h3 className="mt-6 text-xl font-semibold">{service.title}</h3><p className="mt-3 leading-7 text-slate-600">{service.description}</p><span className="mt-5 inline-block text-sm font-semibold text-emerald-800">Learn more →</span></Link>; })}</div></div></section>
+    <EditorialServices />
 
     <section className="mx-auto max-w-6xl px-4 py-20"><div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow">Selected work</p><h2 className="section-title">Editing made to stop the scroll.</h2></div><Link href="/our-work" className="rounded-full border border-site-primary/20 px-5 py-2.5 font-semibold">View all 16 edits</Link></div><ShortsGrid limit={4} /></section>
 
