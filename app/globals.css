@@ -31,6 +31,27 @@ body::before {
 html { scroll-behavior: smooth; }
 button, a, input, select, textarea { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2; }
 
+.site-scroll-surface > main > section,
+.site-scroll-surface > footer {
+  transform: translateY(var(--global-shift, 0px)) skewY(var(--global-skew, 0deg)) scaleY(var(--global-stretch, 1));
+  filter: blur(var(--global-blur, 0px));
+  transform-origin: center;
+  will-change: transform, filter;
+}
+
+.site-scroll-surface video,
+.site-scroll-surface iframe,
+.site-scroll-surface img {
+  transition: filter 80ms linear;
+}
+
+.site-scroll-surface video {
+  filter: blur(var(--media-blur, 0px)) saturate(1.04);
+  transform: skewY(var(--media-skew, 0deg)) scaleY(var(--media-stretch, 1));
+  transform-origin: center;
+  will-change: transform, filter;
+}
+
 .orbit-ambient {
   background:
     radial-gradient(circle at 50% 48%, rgba(216,255,133,.12), transparent 19%),
@@ -137,4 +158,7 @@ button, a, input, select, textarea { @apply focus-visible:outline-none focus-vis
   .footer-curtain { display: none; }
   .footer-content, .footer-brand img { opacity: 1; transform: none; transition: none; }
   .orbit-ring, .orbit-logo { animation: none; }
+  .site-scroll-surface > main > section,
+  .site-scroll-surface > footer,
+  .site-scroll-surface video { transform: none; filter: none; }
 }
