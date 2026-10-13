@@ -23,7 +23,7 @@ export default function EditorialServices() {
             <h2 className="mt-3 font-display text-[clamp(3.2rem,7vw,7.2rem)] font-semibold leading-[.82] tracking-[-.06em]">Built to move<br />brands forward.</h2>
           </div>
           <div className="flex items-end justify-between gap-5 lg:pb-1">
-            <p className="hidden max-w-sm text-sm leading-6 text-white/50 sm:block">Strategy, content, design and technology—connected from the first idea to the final experience.</p>
+            <p className="hidden max-w-sm text-sm leading-6 text-white/50 sm:block">Strategy, content, design and technology connected from the first idea to the final experience.</p>
             <Link href="/services" className="group hidden shrink-0 items-center gap-2 text-[10px] font-bold uppercase tracking-[.18em] text-site-btnPrimary sm:flex">All services <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link>
           </div>
         </div>

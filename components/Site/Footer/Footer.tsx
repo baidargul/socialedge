@@ -54,7 +54,7 @@ export default function Footer() {
 
         <div className="flex flex-col justify-between gap-2 py-4 text-[9px] uppercase tracking-[.16em] text-white/30 sm:flex-row">
           <span>© {new Date().getFullYear()} SocialEdge Creative</span>
-          <div className="hidden gap-6 sm:flex"><span>Built for the scroll</span><Link href="/admin-login" className="hover:text-white">Admin</Link></div>
+          <div className="hidden gap-6 sm:flex"><span>Create attention · Build connection</span><Link href="/admin-login" className="hover:text-white">Admin</Link></div>
         </div>
       </div>
 
