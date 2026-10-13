@@ -1,4 +1,10 @@
-import PageHero from "@/components/Site/PageHero";
-import ShortsGrid from "@/components/Site/ShortsGrid";
-export const metadata = { title: "Our Work", description: "Explore short-form video editing work by SocialEdge Creative." };
-export default function WorkPage() { return <><PageHero eyebrow="Our Work" title="Real edits. Real energy. Made for social." description="Explore a selection of short-form videos created to hold attention, communicate clearly and feel native to the platforms where audiences spend their time." /><section className="mx-auto max-w-6xl px-4 py-20"><div className="mb-10 max-w-2xl"><p className="eyebrow">Video portfolio</p><h2 className="section-title">Sixteen ways to shape a story.</h2><p className="mt-4 leading-7 text-slate-600">Every project starts with different footage and a different goal. The common thread is deliberate pacing, visual clarity and an edit that earns the next second.</p></div><ShortsGrid /></section></>; }
+import DepthGallery from "@/components/Site/DepthGallery";
+
+export const metadata = {
+  title: "Our Work",
+  description: "Explore short-form video editing work by SocialEdge Creative.",
+};
+
+export default function WorkPage() {
+  return <DepthGallery />;
+}
