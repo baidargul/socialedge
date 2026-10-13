@@ -30,7 +30,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       current += (target - current) * 0.13;
       target *= 0.9;
       const force = Math.abs(current);
-      root.style.setProperty("--global-skew", `${current * -1.8}deg`);
       root.style.setProperty("--global-stretch", `${1 + force * 0.032}`);
       root.style.setProperty("--global-shift", `${current * -10}px`);
       root.style.setProperty("--global-blur", `${force * 0.65}px`);
@@ -45,7 +44,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(frame);
-      ["--global-skew", "--global-stretch", "--global-shift", "--global-blur", "--media-skew", "--media-stretch", "--media-blur"].forEach((property) => root.style.removeProperty(property));
+      ["--global-stretch", "--global-shift", "--global-blur", "--media-skew", "--media-stretch", "--media-blur"].forEach((property) => root.style.removeProperty(property));
     };
   }, [admin]);
 
