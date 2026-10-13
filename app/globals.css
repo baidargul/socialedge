@@ -35,7 +35,8 @@ button, a, input, select, textarea { @apply focus-visible:outline-none focus-vis
   transition: transform 600ms cubic-bezier(.22,1,.36,1), opacity 400ms ease;
   will-change: transform, opacity;
 }
-html.footer-in-view .menu-navbar {
+html.footer-in-view .menu-navbar,
+html.work-parallax-in-view .menu-navbar {
   transform: translateY(-130%);
   opacity: 0;
   pointer-events: none;
@@ -205,6 +206,24 @@ html.homepage-service-snap { scroll-snap-type: y proximity; }
   .service-snap-card { min-width: 78vw; border: 1px solid rgba(255,255,255,.15); scroll-snap-align: center; }
   .service-snap-card:first-child { border-left-color: rgba(255,255,255,.15); }
 }
+
+html.home-work-snap { scroll-snap-type: y proximity; }
+.home-work-parallax {
+  height: 550vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  transform: none !important;
+  filter: none !important;
+  background: linear-gradient(
+    to bottom,
+    #0a211f 0%,
+    #080b0b 16%,
+    #080b0b 84%,
+    #0a211f 100%
+  ) !important;
+}
+.parallax-work-track { will-change: transform; }
+.parallax-work-card { box-shadow: 0 30px 90px rgba(0,0,0,.45); }
 
 .footer-stage {
   background:

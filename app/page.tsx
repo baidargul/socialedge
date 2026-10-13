@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import ShortsGrid from "@/components/Site/ShortsGrid";
+import HomeWorkParallax from "@/components/Site/HomeWorkParallax";
 import OrbitHero from "@/components/Site/OrbitHero";
 import CreativeUniverse from "@/components/Site/CreativeUniverse";
 import EditorialServices from "@/components/Site/EditorialServices";
@@ -27,7 +27,7 @@ export default function Home() {
 
     <EditorialServices />
 
-    <section className="mx-auto max-w-6xl px-4 py-20"><div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow">Selected work</p><h2 className="section-title">Editing made to stop the scroll.</h2></div><Link href="/our-work" className="rounded-full border border-site-primary/20 px-5 py-2.5 font-semibold">View all 16 edits</Link></div><ShortsGrid limit={4} /></section>
+    <HomeWorkParallax />
 
     <section className="bg-site-primary px-4 py-20 text-white"><div className="mx-auto max-w-6xl"><p className="eyebrow !text-site-btnPrimary">Built for different starting points</p><h2 className="mt-3 max-w-3xl font-display text-4xl font-semibold">Creative support shaped around the kind of work you need.</h2><div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{useCases.map((item) => <article key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-6"><h3 className="text-xl font-semibold">{item.title}</h3><p className="mt-3 text-sm leading-6 text-white/60">{item.description}</p></article>)}</div></div></section>
 
