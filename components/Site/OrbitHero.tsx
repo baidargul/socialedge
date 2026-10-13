@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
+import { portfolioItems } from "@/lib/content";
 
-const videos = ["technews.mp4", "SaasExplainer.mp4", "podcastII.mp4", "guyexplaining.mp4", "bottlead.mp4", "podcast.mp4", "technews.mp4", "SaasExplainer.mp4"];
+const orbitProjects = portfolioItems.slice(0, 8);
 
 export default function OrbitHero() {
   return (
@@ -13,9 +14,15 @@ export default function OrbitHero() {
       <div className="orbit-ambient absolute inset-0" />
       <div className="orbit-scene absolute inset-0 flex items-center justify-center" aria-hidden="true">
         <div className="orbit-ring">
-          {videos.map((file, index) => (
-            <div key={`${file}-${index}`} className="orbit-card" style={{ "--orbit-angle": `${index * 45}deg` } as CSSProperties}>
-              <video src={`/videos/stock/${file}`} autoPlay loop muted playsInline preload="metadata" />
+          {orbitProjects.map(({ id, category }, index) => (
+            <div key={id} className="orbit-card" style={{ "--orbit-angle": `${index * 45}deg` } as CSSProperties}>
+              <iframe
+                src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3`}
+                title={`SocialEdge ${category} project preview`}
+                allow="autoplay; encrypted-media; picture-in-picture"
+                tabIndex={-1}
+                loading={index < 4 ? "eager" : "lazy"}
+              />
               <span className="orbit-card-shade" />
             </div>
           ))}
