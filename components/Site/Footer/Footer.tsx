@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-brand flex min-h-0 flex-1 flex-col justify-center border-y border-white/15 py-4">
-          <Image src="/identity/SocialEdge.png" alt="SocialEdge" width={2292} height={460} className="max-h-[12svh] w-full select-none object-contain sm:max-h-[20svh]" />
+          <Image src="/identity/socialedge.png" alt="SocialEdge" width={2292} height={460} className="max-h-[12svh] w-full select-none object-contain sm:max-h-[20svh]" />
           <p className="mt-2 text-center text-[8px] font-bold uppercase tracking-[.24em] text-white/35 sm:mt-5 sm:text-xs sm:tracking-[.58em]">Create attention · Build connection</p>
         </div>
 

@@ -47,7 +47,7 @@ export default function OrbitHero() {
       <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(7,10,10,.05)_22%,rgba(7,10,10,.78)_76%,#070a0a_100%)]" />
       <div className="relative z-20 flex w-full max-w-7xl flex-col items-center px-5 text-center">
         <p className="mb-7 text-[10px] font-bold uppercase tracking-[.48em] text-site-btnPrimary sm:text-xs">SocialEdge Creatives</p>
-        <Image src="/identity/SocialEdge.png" alt="SocialEdge Creative" width={2292} height={460} priority className="orbit-logo h-auto w-[min(88vw,1050px)] select-none object-contain" />
+        <Image src="/identity/socialedge.png" alt="SocialEdge Creative" width={2292} height={460} priority className="orbit-logo h-auto w-[min(88vw,1050px)] select-none object-contain" />
         <p className="mt-7 max-w-xl text-sm leading-6 text-white/60 sm:text-base">Content, brand and digital experiences Designed<br /> to hold attention and turn it into momentum.</p>
         <div className="pointer-events-auto mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/pricing#booking" className="group inline-flex items-center justify-center gap-3 rounded-full bg-site-btnPrimary px-6 py-3.5 font-semibold text-site-primary">Start a project <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link>
