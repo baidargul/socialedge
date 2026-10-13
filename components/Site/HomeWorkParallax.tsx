@@ -66,7 +66,7 @@ export default function HomeWorkParallax() {
     <section ref={sectionRef} className="home-work-parallax relative h-[550vh] bg-[#080b0b] text-white">
       <div ref={stageRef} className="sticky top-0 h-[100svh] overflow-hidden">
         <div className="absolute left-5 right-5 top-24 z-20 flex items-end justify-between sm:left-10 sm:right-10 lg:left-16 lg:right-16">
-          <div><p className="text-[10px] font-bold uppercase tracking-[.35em] text-site-btnPrimary">Selected work · full archive</p><h2 className="mt-2 font-display text-4xl font-semibold sm:text-6xl">Made to move.</h2></div>
+          <p className="text-[10px] font-bold uppercase tracking-[.35em] text-site-btnPrimary">Selected work · full archive</p>
           <Link href="/our-work" className="group hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[.18em] text-white/55 transition hover:text-site-btnPrimary sm:flex">Open depth gallery <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link>
         </div>
 
