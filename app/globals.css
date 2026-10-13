@@ -35,8 +35,20 @@ button, a, input, select, textarea { @apply focus-visible:outline-none focus-vis
   transition: transform 600ms cubic-bezier(.22,1,.36,1), opacity 400ms ease;
   will-change: transform, opacity;
 }
+.menu-navbar.homepage-navbar {
+  transform: translateY(-130%);
+  opacity: 0;
+  pointer-events: none;
+}
+html.hero-passed .menu-navbar.homepage-navbar {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
 html.footer-in-view .menu-navbar,
-html.work-parallax-in-view .menu-navbar {
+html.work-parallax-in-view .menu-navbar,
+html.footer-in-view .menu-navbar.homepage-navbar,
+html.work-parallax-in-view .menu-navbar.homepage-navbar {
   transform: translateY(-130%);
   opacity: 0;
   pointer-events: none;

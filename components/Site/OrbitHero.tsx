@@ -3,14 +3,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { portfolioItems } from "@/lib/content";
 
 const orbitProjects = portfolioItems.slice(0, 8);
 
 export default function OrbitHero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const root = document.documentElement;
+    const observer = new IntersectionObserver(([entry]) => {
+      root.classList.toggle("hero-passed", !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(hero);
+    return () => {
+      observer.disconnect();
+      root.classList.remove("hero-passed");
+    };
+  }, []);
+
   return (
-    <section className="orbit-hero relative flex min-h-[760px] items-center justify-center overflow-hidden bg-[#070a0a] text-white sm:min-h-screen">
+    <section ref={heroRef} className="orbit-hero relative flex min-h-[760px] items-center justify-center overflow-hidden bg-[#070a0a] text-white sm:min-h-screen">
       <div className="orbit-ambient absolute inset-0" />
       <div className="orbit-scene absolute inset-0 flex items-center justify-center" aria-hidden="true">
         <div className="orbit-ring">

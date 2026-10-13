@@ -4,6 +4,7 @@ import Logo from "../Identity/Logo";
 import MainMenu from "../Menu/MainMenu";
 import MenuButtons from "./navbar/MenuButtons";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 type Props = {};
@@ -17,6 +18,7 @@ const navLinks = [
 ];
 
 const Navbar = (props: Props) => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,7 +30,7 @@ const Navbar = (props: Props) => {
   }, []);
 
   return (
-    <header className="menu-navbar fixed top-0 left-0 w-full z-50">
+    <header className={`menu-navbar fixed top-0 left-0 w-full z-50 ${pathname === "/" ? "homepage-navbar" : ""}`}>
       <div className="mx-auto max-w-6xl px-4 pt-4">
         <div
           className={`relative flex items-center justify-between rounded-2xl px-6 py-4 border shadow-soft transition-all ${
