@@ -292,3 +292,10 @@ html.home-work-snap { scroll-snap-type: y proximity; }
   .depth-card { transition: none; }
   .depth-gallery-haze, .depth-orbit-one, .depth-orbit-two { animation: none; }
 }
+
+img {
+  pointer-events: none;
+user-select: none;
+-webkit-user-drag: none;
+-moz-window-dragging: no-drag;
+}
