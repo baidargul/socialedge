@@ -240,7 +240,14 @@ html.home-work-snap { scroll-snap-type: y proximity; }
   ) !important;
 }
 .parallax-work-track { will-change: transform; }
-.parallax-work-card { box-shadow: 0 30px 90px rgba(0,0,0,.45); }
+.parallax-work-card { box-shadow: 0 30px 90px rgba(0,0,0,.45); width: clamp(300px, 38vw, 680px); }
+.parallax-work-card-1 { width: clamp(340px, 46vw, 790px); }
+.parallax-work-card-2 { width: clamp(280px, 33vw, 590px); }
+@media (max-width: 639px) {
+  .parallax-work-card,
+  .parallax-work-card-1,
+  .parallax-work-card-2 { width: 78vw; }
+}
 
 .footer-stage {
   background:
